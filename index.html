@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;">
+    <title>salaryer</title>
+    <style>
+      html {
+        touch-action: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app-box"></div>
+    <!-- built files will be auto injected -->
+  </body>
+  <script>
+    window.onload = function() {
+      // 同时按下两个手指
+      document.addEventListener('touchstart', function(event) {
+          if(event.touches.length > 1) {
+              event.preventDefault()
+          }
+      })
+      var lastTouchEnd = 0;
+      // 特别注意300ms时差的设置
+      document.addEventListener('touchend', function(event) {
+          var now = (new Date()).getTime();
+          if(now-lastTouchEnd <= 300) {
+              event.preventDefault();
+          }
+          lastTouchEnd = now;
+      })
+    }
+    /* var deviceWidth = document.documentElement.clientWidth;
+    if(deviceWidth > 640) deviceWidth = 640; 
+    document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px'; */
+  </script>
+</html>
